@@ -54,15 +54,7 @@ address.contact-info,
   display: flex;
   flex-direction: column;
   gap: 7px;
-  transform: translateY(60px);
-  opacity: 0;
-}
-
-/* Animated in via GSAP */
-.contact-row--visible {
-  transform: translateY(0);
-  opacity: 1;
-  transition: transform 0.6s ease, opacity 0.6s ease;
+  /* 초기 상태는 GSAP에서 관리 */
 }
 
 .contact-row__fields {

@@ -79,14 +79,14 @@ body {
   background: var(--color-tab-off);
   border-radius: 15px 15px 0 0;
   font-family: var(--font-pretend);
-  font-size: 14px;
+  font-size: 0;               /* 비활성 탭: 텍스트 숨김 */
   font-weight: 600;
-  color: #777;
+  color: transparent;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.25s ease, height 0.25s ease, color 0.2s ease;
+  transition: background 0.3s ease, height 0.3s ease, font-size 0.2s ease, color 0.2s ease;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -95,10 +95,12 @@ body {
   height: var(--tab-h-active);
   background: var(--color-main);
   color: var(--color-white);
+  font-size: 14px;            /* 활성 탭: 텍스트 표시 */
 }
 
 .bookmark-tabs__item:not(.bookmark-tabs__item--active):hover {
   background: #c8c8c8;
+  height: calc(var(--tab-h) + 4px);
 }
 
 /* Full-width divider line below tabs */

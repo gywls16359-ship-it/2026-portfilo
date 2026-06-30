@@ -1,7 +1,5 @@
 /* Graphic card slider — wheel / arrow / touch */
 
-import { fetchData } from './data.js';
-
 let currentIndex = 0;
 let total = 0;
 let track;
@@ -25,10 +23,6 @@ function getMaxOffset() {
   return Math.max(0, lastCardRight - container.offsetWidth);
 }
 
-/*
- * Math.floor: 마지막 위치에서 마지막 카드가 부분적으로 보임
- * → 블랭크 없이 "더 있다"는 힌트를 주면서 버튼이 왼쪽으로 이동
- */
 function getMaxIndex() {
   const maxPx = getMaxOffset();
   const step  = getStepPx();
@@ -54,25 +48,13 @@ function goTo(idx, animate = true) {
   updateBtn();
 }
 
-export async function initSlider() {
+export function initSlider() {
   track   = document.getElementById('graphicTrack');
   nextBtn = document.querySelector('.slider-btn--next');
   if (!track) return;
 
-  const items = await fetchData('graphic');
-  total = items.length;
-
-  items.forEach(({ title, img }) => {
-    const card = document.createElement('div');
-    card.className = 'card-item';
-    card.innerHTML = `
-      <div class="card-item__image">
-        <img src="${img}" alt="${title}" loading="lazy" onerror="this.style.display='none'">
-      </div>
-      <span class="card-item__label">${title}</span>
-    `;
-    track.appendChild(card);
-  });
+  /* 카드는 HTML에 직접 작성 — DOM에서 개수 읽기 */
+  total = track.querySelectorAll('.card-item').length;
 
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {

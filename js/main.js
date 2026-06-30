@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderWordSearch('wordSearch');
   renderSkillCircles('skillCircles');
 
-  /* Init interactive modules */
+  /* Init interactive modules — 카드는 HTML에 직접 작성 */
   initSlider();
   initProjectTabs();
 
@@ -29,11 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Modal */
   initModal();
 
-  /* TOP button → main 섹션으로 */
+  /* TOP button → #main으로 */
   document.querySelectorAll('.top-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const main = document.getElementById('main');
-      if (main) gsap.to(window, { duration: 0.6, scrollTo: main, ease: 'power2.inOut' });
+      if (!main) return;
+      document.documentElement.style.scrollSnapType = 'none';
+      gsap.to(window, {
+        duration: 0.7,
+        scrollTo: { y: main },
+        ease: 'power2.inOut',
+        onComplete() {
+          document.documentElement.style.scrollSnapType = '';
+        },
+      });
     });
   });
 });

@@ -20,13 +20,15 @@
 
   /* Tab dimensions */
   --tab-w:   100px;
-  --tab-h:   30px;
-  --tab-h-active: 40px;
+  --tab-h:   16px;            /* 비활성: 얇은 슬릿 */
+  --tab-h-active: 50px;       /* 활성: 크게 튀어나옴 */
   --tab-gap: 14px;
 
-  /* Card (Graphic slider) */
-  --card-w:  310px;
-  --card-h:  420px;
+  /* Card (Graphic slider) — 3.5장만 보이도록 반응형 계산
+     visible = 100vw - padding-left(118px)
+     3.5 cards + 3 gaps = visible  →  card-w = (visible - 3*gap) / 3.5  */
+  --card-w:  clamp(220px, calc((100vw - 268px) / 3.5), 420px);
+  --card-h:  min(calc(var(--card-w) * 1.355), calc(100vh - 260px));
   --card-gap: 50px;
 
   /* Layout */

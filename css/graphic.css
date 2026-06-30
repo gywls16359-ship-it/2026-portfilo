@@ -51,6 +51,7 @@
 }
 
 .card-item__image {
+  position: relative;
   width: var(--card-w);
   height: var(--card-h);
   background: var(--color-bg-card);
@@ -59,29 +60,116 @@
   flex-shrink: 0;
 }
 
-.card-item__image img {
+.card-item__image img:first-child {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
 }
 
-.card-item:hover .card-item__image img {
+.card-item:hover .card-item__image img:first-child {
   transform: scale(1.04);
 }
 
+/* ── Hover overlay ── */
+.card-item__hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.4s ease;
+  pointer-events: none;
+}
+
+.card-item:hover .card-item__hover-overlay {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* 원형 배지: 작게 시작 → 커지면서 나타남 */
+.card-item__hover-badge {
+  position: relative;
+  width: 162px;
+  height: 162px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.15);
+  opacity: 0;
+  transition: transform 0.45s var(--ease-spring), opacity 0.3s ease;
+}
+
+.card-item:hover .card-item__hover-badge {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* 흰색 원형 배경 */
+.card-item__hover-white-circle {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  border-radius: 100%;
+}
+
+/* 시계방향 회전하는 링 이미지 */
+.card-item__hover-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: graphic-spin 11s linear infinite paused;
+  z-index: 1;
+}
+
+.card-item:hover .card-item__hover-ring {
+  animation-play-state: running;
+}
+
+@keyframes graphic-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* 중앙 화살표 (고정) */
+.card-item__hover-arrow {
+  position: relative;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* 카드 하단 텍스트 (2줄) */
 .card-item__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.card-item__label-sub {
+  font-family: var(--font-pretend);
+  font-weight: 400;
+  font-size: 15px;
+  color: #5d5d5d;
+}
+
+.card-item__label-title {
   font-family: var(--font-pretend);
   font-weight: 400;
   font-size: 20px;
   color: var(--color-text);
-  white-space: nowrap;
 }
 
 /* ── Arrow button ── */
 .slider-btn {
   position: absolute;
-  right: 24px;
+  right: 24px;      /* 기본: 오른쪽(→) — 왼쪽 끝(index 0)일 때 */
   left: auto;
   top: 50%;
   transform: translateY(-50%);
@@ -95,18 +183,20 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  transition: left 0.3s ease, right 0.3s ease;
 }
 
 .slider-btn__icon {
   width: 48px;
   height: 48px;
-  opacity: 0.45;
+  filter: brightness(0) invert(1);   /* 흰색 아이콘 */
+  opacity: 0.85;
   transition: opacity 0.2s;
 }
 
-.slider-btn:hover .slider-btn__icon { opacity: 0.75; }
+.slider-btn:hover .slider-btn__icon { opacity: 1; }
 
-/* 마지막 위치: 왼쪽으로 이동 + 아이콘 반전 */
+/* 오른쪽 끝 도달 시: 왼쪽(←)으로 이동 → 처음으로 돌아가기 */
 .slider-btn--at-left {
   left: 24px;
   right: auto;

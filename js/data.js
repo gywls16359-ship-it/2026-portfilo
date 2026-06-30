@@ -2,11 +2,11 @@
 
 const localData = {
   graphic: [
-    { id: 'g1', title: 'AI 이미지',           img: 'image/ai_1.jpg',         desc: 'AI 이미지 디자인' },
-    { id: 'g2', title: '배너 디자인',         img: 'image/banner_2.jpg',     desc: '프로모션 배너 디자인' },
-    { id: 'g3', title: '유튜브 썸네일',       img: 'image/youtube_2.jpg',    desc: '유튜브 채널 썸네일 디자인' },
-    { id: 'g4', title: '이벤트 페이지',       img: 'image/eventpage_1.jpg',  desc: '이벤트 페이지 디자인' },
-    { id: 'g5', title: '팝업 배너',           img: 'image/popup_1.jpg',      desc: '팝업 배너 디자인' },
+    { id: 'g1', subtitle: 'AI Design',          title: '크로캉부슈 광고',       img: 'image/ai_1.jpg',         desc: 'AI 이미지 디자인' },
+    { id: 'g2', subtitle: 'Promotion Banner',   title: '파파고 플러스 배너',    img: 'image/banner_2.jpg',     desc: '프로모션 배너 디자인' },
+    { id: 'g3', subtitle: 'Event Promotion',    title: '이젠아카데미 이벤트',   img: 'image/youtube_2.jpg',    desc: '유튜브 채널 썸네일 디자인' },
+    { id: 'g4', subtitle: 'Brand Campaign',     title: '이케아 프로모션',       img: 'image/eventpage_1.jpg',  desc: '이벤트 페이지 디자인' },
+    { id: 'g5', subtitle: 'Promotion Banner',   title: '팝업 배너',             img: 'image/popup_1.jpg',      desc: '팝업 배너 디자인' },
   ],
   web: [
     { id: 'ankorea',  name: '앤코리아',      img: 'assets/web/ankorea.jpg',  skills: ['HTML','CSS','JS'], period: '2025.06', desc: '앤코리아 기업 웹사이트 퍼블리싱' },

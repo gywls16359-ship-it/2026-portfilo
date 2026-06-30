@@ -71,7 +71,7 @@ function initMainAnimations() {
   pills.forEach((pill, i) => {
     tl.to(pill, {
       strokeDashoffset: 0,
-      duration: 2.2,
+      duration: 1,
       ease: 'power1.inOut',
     }); // 기본 위치('>') = 이전 완료 후 시작
 
@@ -119,7 +119,9 @@ function initContactAnimations() {
   const thankYouText = thankYouEl ? thankYouEl.textContent.trim() : 'Thank You';
   if (thankYouEl) thankYouEl.textContent = '';
 
-  /* Copyright hidden initially */
+  /* 초기 숨김 상태 — GSAP으로 관리 */
+  const rows = document.querySelectorAll('.contact-row');
+  gsap.set(rows, { opacity: 0, y: 60 });
   gsap.set('.copyright', { opacity: 0 });
 
   ScrollTrigger.create({
@@ -138,28 +140,25 @@ function initContactAnimations() {
         });
       }
 
-      // 2. Lines grow left → right + contact rows appear above line
-      document.querySelectorAll('.contact-row').forEach((row, i) => {
+      // 2. 각 contact-row: 위로 슬라이드 + 줄 성장 + fields 등장
+      rows.forEach((row, i) => {
         const divider = row.querySelector('.contact-row__divider');
         const fields  = row.querySelector('.contact-row__fields');
+        const offset  = i === 0 ? '>-0.1' : '-=0.1';
 
-        tl.to(divider, {
-          width: '100%',
-          duration: 0.5,
-          ease: 'power2.out',
-        }, i === 0 ? '>-0.2' : '-=0.2');
+        // row 전체 보이기
+        tl.to(row, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, offset);
 
+        // divider 선 성장
+        tl.to(divider, { width: '100%', duration: 0.5, ease: 'power2.out' }, '<0.1');
+
+        // fields 위에서 슬라이드
         tl.fromTo(fields, {
-          y: 30,
-          opacity: 0,
-          clipPath: 'inset(100% 0 0 0)',
+          y: 20, opacity: 0, clipPath: 'inset(100% 0 0 0)',
         }, {
-          y: 0,
-          opacity: 1,
-          clipPath: 'inset(0% 0 0 0)',
-          duration: 0.45,
-          ease: 'power2.out',
-        }, '<0.15');
+          y: 0, opacity: 1, clipPath: 'inset(0% 0 0 0)',
+          duration: 0.4, ease: 'power2.out',
+        }, '<0.1');
       });
 
       // 3. Copyright fade in
