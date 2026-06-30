@@ -1,0 +1,126 @@
+/* ─────────────────────────────────────
+   CONTACT — Thank You + info table
+───────────────────────────────────── */
+
+.page--contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 97px;
+  box-sizing: border-box;
+}
+
+/* ── Main content block ── */
+.contact-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 95px;
+  padding-top: 30px;
+}
+
+/* ── "Thank You" ── */
+.thank-you {
+  font-family: var(--font-coming);
+  font-size: 96px;
+  font-weight: 400;
+  color: var(--color-main);
+  white-space: nowrap;
+  line-height: 1;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Typewriter clip trick: each letter is span */
+.thank-you-inner {
+  display: inline-block;
+}
+
+/* ── Contact info right side ── */
+address.contact-info,
+.contact-info {
+  font-style: normal;
+  width: 638px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.contact-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  transform: translateY(60px);
+  opacity: 0;
+}
+
+/* Animated in via GSAP */
+.contact-row--visible {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.contact-row__fields {
+  display: flex;
+  align-items: center;
+  gap: 76px;
+  font-family: var(--font-score);
+  font-weight: 400;
+  color: var(--color-black);
+  white-space: nowrap;
+}
+
+.contact-row__label {
+  font-size: 36px;
+  line-height: 1;
+  min-width: 130px;
+}
+
+.contact-row__value {
+  font-size: 32px;
+  line-height: 1;
+  /* typewriter text target */
+}
+
+.contact-row__divider {
+  height: 3px;
+  background: var(--color-main);
+  border-radius: 2px;
+  width: 0; /* grows via GSAP */
+  transform-origin: left center;
+}
+
+/* ── Copyright ── */
+.copyright {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 560px;
+  color: var(--color-black);
+  opacity: 0;
+}
+
+.copyright__main {
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.copyright__sub {
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+}

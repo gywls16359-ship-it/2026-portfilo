@@ -1,0 +1,234 @@
+/* ─────────────────────────────────────
+   COMMON — layout, tabs, shared components
+───────────────────────────────────── */
+
+html {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background: #f4f1ec;
+  overflow-x: hidden;
+}
+
+/* ── Page section ── */
+.page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow: hidden;
+}
+
+/* ── Paper background ── */
+.paper-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../image/paper.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Shadow overlays (top/bottom "book edge" feel) ── */
+.shadow-top,
+.shadow-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 35px;
+  pointer-events: none;
+  z-index: 5;
+}
+.shadow-top {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(180,170,155,0.35), transparent);
+}
+.shadow-bottom {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(180,170,155,0.35), transparent);
+}
+
+/* ── Bookmark tabs wrapper ── */
+.tabs-wrapper {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.bookmark-tabs {
+  display: flex;
+  gap: var(--tab-gap);
+  align-items: flex-end;
+  padding-right: var(--page-pad);
+}
+
+.bookmark-tabs__item {
+  width: var(--tab-w);
+  height: var(--tab-h);
+  background: var(--color-tab-off);
+  border-radius: 15px 15px 0 0;
+  font-family: var(--font-pretend);
+  font-size: 14px;
+  font-weight: 600;
+  color: #777;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s ease, height 0.25s ease, color 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.bookmark-tabs__item--active {
+  height: var(--tab-h-active);
+  background: var(--color-main);
+  color: var(--color-white);
+}
+
+.bookmark-tabs__item:not(.bookmark-tabs__item--active):hover {
+  background: #c8c8c8;
+}
+
+/* Full-width divider line below tabs */
+.tabs-line {
+  width: 100%;
+  height: 2px;
+  background: var(--color-white);
+  margin-top: 0;
+}
+
+/* ── Page title (ABOUT → UIUX) ── */
+.page-title {
+  position: absolute;
+  left: 49px;
+  top: 149px;
+  font-family: var(--font-score);
+  font-weight: 300;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--color-main);
+  white-space: nowrap;
+  z-index: 2;
+  letter-spacing: 0;
+}
+
+/* ── Section dot indicator (GRAPHIC/WEB/UIUX shared) ── */
+.section-dot-nav {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  z-index: 10;
+}
+
+.section-dot-nav__dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-tab-off);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1), background 0.3s ease;
+}
+
+.section-dot-nav__dot--active {
+  width: 36px;
+  background: var(--color-main);
+}
+
+/* ── Modal overlay ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  display: none;
+  place-items: center;
+  z-index: 1000;
+}
+.modal-overlay.is-open { display: grid; }
+
+.modal-box {
+  max-width: 820px;
+  width: 92%;
+  border-radius: 20px;
+  background: var(--color-white);
+  padding: 32px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--color-black);
+  cursor: pointer;
+  z-index: 2;
+}
+.modal-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.modal-title {
+  font-family: var(--font-pretend);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 8px;
+}
+.modal-desc {
+  font-family: var(--font-pretend);
+  font-size: 15px;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ── Mobile bottom nav ── */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: var(--color-white);
+  border-top: 1px solid var(--color-tab-off);
+  align-items: center;
+  justify-content: space-around;
+  z-index: 100;
+}
+
+.mobile-nav__item {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-pretend);
+  font-size: 12px;
+  font-weight: 500;
+  color: #999;
+  transition: color 0.2s;
+}
+
+.mobile-nav__item--active {
+  color: var(--color-main);
+  font-weight: 700;
+}

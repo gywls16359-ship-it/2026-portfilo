@@ -1,0 +1,131 @@
+/* ─────────────────────────────────────
+   RESPONSIVE — tablet & mobile
+───────────────────────────────────── */
+
+/* ── Tablet (768–1439px) ── */
+@media (max-width: 1439px) {
+  :root {
+    --tab-w: 80px;
+    --card-w: 270px;
+    --card-h: 360px;
+  }
+
+  .about-layout {
+    gap: 40px;
+    padding-top: 80px;
+  }
+
+  .profile-panel { width: 320px; }
+
+  .main-content { gap: 50px; }
+  .nav-left { width: 300px; }
+
+  .word-search {
+    grid-template-columns: repeat(9, 22px);
+    grid-template-rows: repeat(8, 42px);
+    gap: 20px 36px;
+    font-size: 24px;
+    letter-spacing: -2px;
+  }
+
+  .thank-you { font-size: 72px; }
+  .contact-row__label { font-size: 28px; }
+  .contact-row__value { font-size: 24px; }
+
+  .project-tabs-bar { left: 80px; right: 80px; }
+
+  .card-slider { padding-left: 60px; }
+}
+
+/* ── Mobile (≤ 767px) ── */
+@media (max-width: 767px) {
+  :root {
+    --card-w: 240px;
+    --card-h: 320px;
+  }
+
+  /* Show mobile nav, hide bookmark tabs */
+  .tabs-wrapper { display: none; }
+  .mobile-nav { display: flex; }
+
+  /* Adjust page to account for bottom nav */
+  .page {
+    height: calc(100svh - 60px);
+    padding-bottom: 0;
+  }
+
+  /* MAIN */
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .nav-left {
+    width: 100%;
+    gap: 30px;
+    padding: 0;
+  }
+
+  .word-search {
+    grid-template-columns: repeat(9, 18px);
+    grid-template-rows: repeat(8, 36px);
+    gap: 14px 28px;
+    font-size: 20px;
+    letter-spacing: -1px;
+  }
+
+  /* ABOUT */
+  .about-layout {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 90px 20px 20px;
+    overflow-y: auto;
+  }
+
+  .profile-panel { width: 100%; max-width: 340px; }
+
+  .skill-circles { flex-wrap: wrap; gap: 16px; }
+  .skill-circle { width: 90px; height: 90px; }
+  .skill-circle__ring { width: 90px; height: 90px; }
+  .skill-circle__inner { inset: 8px; }
+
+  .history-section { flex-direction: column; gap: 24px; }
+  .history-col--left { width: 100%; }
+
+  /* GRAPHIC */
+  .card-slider {
+    padding-left: 20px;
+    right: 50px;
+  }
+  .slider-btn { right: 10px; }
+
+  /* CONTACT */
+  .contact-content {
+    flex-direction: column;
+    gap: 30px;
+    padding: 90px 20px 20px;
+    align-items: center;
+  }
+
+  .thank-you { font-size: 52px; }
+
+  .contact-info {
+    width: 100%;
+    max-width: 340px;
+    gap: 28px;
+  }
+
+  .contact-row__fields { gap: 20px; }
+  .contact-row__label { font-size: 22px; }
+  .contact-row__value { font-size: 18px; }
+
+  /* WEB / UIUX */
+  .project-tabs-bar { left: 20px; right: 20px; }
+  .project-tab-item { width: auto; flex: 1; }
+  .project-tab-item__name { font-size: 14px; }
+
+  .copyright { width: 90%; font-size: 12px; }
+}

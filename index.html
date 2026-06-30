@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서효진 포트폴리오</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Coming+Soon&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sunn-us/SCoreDream@latest/fonts/variable/woff2/SCoreDream.css" onerror="this.remove()">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="css/graphic.css">
+  <link rel="stylesheet" href="css/web.css">
+  <link rel="stylesheet" href="css/uiux.css">
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* S-Core Dream local fallback weights */
+    @font-face {
+      font-family: 'S-Core Dream';
+      src: local('SCoreDream3'), local('S-Core Dream 3 Light');
+      font-weight: 300;
+    }
+    @font-face {
+      font-family: 'S-Core Dream';
+      src: local('SCoreDream4'), local('S-Core Dream 4 Regular');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'S-Core Dream';
+      src: local('SCoreDream5'), local('S-Core Dream 5 Medium');
+      font-weight: 500;
+    }
+    @font-face {
+      font-family: 'S-Core Dream';
+      src: local('SCoreDream6'), local('S-Core Dream 6 Bold');
+      font-weight: 700;
+    }
+    /* AppleSDGothicNeo — system font on Apple devices */
+    @font-face {
+      font-family: 'AppleSDGothicNeoEB00';
+      src:local('Apple SD Gothic Neo ExtraBold'), local('AppleSDGothicNeo-ExtraBold'),
+          local('AppleSDGothicNeo');
+      font-weight: 800;
+    }
+
+    /* Page nav dots (GRAPHIC / WEB / UIUX indicator) */
+    .page-nav-dots {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .page-nav-dots.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .page-nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 100px;
+      background: var(--color-tab-off);
+      cursor: pointer;
+      transition: width 0.45s cubic-bezier(0.4,0,0.2,1), background 0.3s;
+    }
+    .page-nav-dot--active {
+      width: 32px;
+      background: var(--color-main);
+    }
+  </style>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+  ① MAIN
+════════════════════════════════════════ -->
+<section id="main" class="page page--main" aria-label="메인">
+  <div class="paper-bg" aria-hidden="true"></div>
+  <div class="shadow-top"  aria-hidden="true"></div>
+  <div class="shadow-bottom" aria-hidden="true"></div>
+
+  <div class="main-content">
+    <!-- Left nav + intro -->
+    <div class="nav-left">
+      <nav class="nav-left__links" aria-label="포트폴리오 섹션 이동">
+        <div class="nav-left__item nav-left__item--active">
+          <span class="nav-left__dot" aria-hidden="true"></span>
+          <a class="nav-left__link" href="#about" data-target="about">profile</a>
+        </div>
+        <div class="nav-left__item">
+          <span class="nav-left__dot" aria-hidden="true"></span>
+          <a class="nav-left__link" href="#web" data-target="web">Publishing</a>
+        </div>
+        <div class="nav-left__item">
+          <span class="nav-left__dot" aria-hidden="true"></span>
+          <a class="nav-left__link" href="#uiux" data-target="uiux">UI/UX design</a>
+        </div>
+        <div class="nav-left__item">
+          <span class="nav-left__dot" aria-hidden="true"></span>
+          <a class="nav-left__link" href="#uiux" data-target="uiux">Team Project</a>
+        </div>
+        <div class="nav-left__item">
+          <span class="nav-left__dot" aria-hidden="true"></span>
+          <a class="nav-left__link" href="#contact" data-target="contact">Contact</a>
+        </div>
+      </nav>
+
+      <div class="intro-text">
+        <p><span class="intro-text__accent">사용자의 경험</span>과 <span class="intro-text__accent">브랜드의 가치</span>를</p>
+        <p>연결하기 위해 끊임없이 고민하는</p>
+        <p class="intro-text__name">디자이너 서효진입니다.</p>
+      </div>
+    </div>
+
+    <!-- Right: word-search grid -->
+    <div class="word-search-wrapper" id="wordSearch" aria-hidden="true">
+      <div class="word-search">
+        <svg class="word-search__pills" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" overflow="visible"></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+  ② ABOUT
+════════════════════════════════════════ -->
+<section id="about" class="page page--about" aria-label="소개">
+  <div class="paper-bg" aria-hidden="true"></div>
+  <div class="shadow-top"  aria-hidden="true"></div>
+  <div class="shadow-bottom" aria-hidden="true"></div>
+
+  <!-- Bookmark tabs -->
+  <div class="tabs-wrapper" aria-hidden="true">
+    <nav class="bookmark-tabs" aria-label="섹션 탭">
+      <button class="bookmark-tabs__item" aria-label="홈으로"></button>
+      <button class="bookmark-tabs__item bookmark-tabs__item--active">ABOUT</button>
+      <button class="bookmark-tabs__item">GRAPHIC</button>
+      <button class="bookmark-tabs__item">WEB</button>
+      <button class="bookmark-tabs__item">UI / UX</button>
+      <button class="bookmark-tabs__item">CONTACT</button>
+    </nav>
+    <div class="tabs-line"></div>
+  </div>
+
+  <div class="about-layout">
+    <!-- Left: profile -->
+    <aside class="profile-panel">
+      <p class="profile-panel__watermark" aria-hidden="true">PROFILE</p>
+      <div class="profile-panel__content">
+        <div class="profile-panel__photo-wrap">
+          <div class="profile-panel__photo">
+            <img src="image/profile.svg" alt="서효진 프로필 사진" loading="lazy">
+          </div>
+        </div>
+        <div class="profile-panel__bottom">
+          <div class="profile-panel__info">
+            <div class="profile-panel__info-row">
+              <span class="profile-panel__icon" aria-hidden="true">
+                <img src="icon/name-icon.svg" alt="">
+              </span>
+              <span class="profile-panel__info-text">서효진</span>
+            </div>
+            <div class="profile-panel__info-row">
+              <span class="profile-panel__icon" aria-hidden="true">
+                <img src="icon/birth-icon.svg" alt="">
+              </span>
+              <span class="profile-panel__info-text">2002.11.15</span>
+            </div>
+            <div class="profile-panel__info-row">
+              <span class="profile-panel__icon" aria-hidden="true">
+                <img src="icon/phone-icon.svg" alt="">
+              </span>
+              <span class="profile-panel__info-text">010-7635-8980</span>
+            </div>
+            <div class="profile-panel__info-row">
+              <span class="profile-panel__icon" aria-hidden="true">
+                <img src="icon/mail-icon.svg" alt="">
+              </span>
+              <span class="profile-panel__info-text">iiseoiiu@naver.com</span>
+            </div>
+          </div>
+          <div class="profile-panel__tags">
+            <span class="profile-panel__tag">#친절함</span>
+            <span class="profile-panel__tag">#섬세함</span>
+            <span class="profile-panel__tag">#열정적</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right: skills + history -->
+    <main class="info-panel">
+      <!-- Skills -->
+      <section class="skills-section" aria-label="스킬">
+        <div class="skills-heading-wrap">
+          <h2 class="skills-heading">SKILLS</h2>
+        </div>
+        <div class="skills-body">
+          <div class="skill-circles" id="skillCircles" aria-label="스킬 게이지"></div>
+          <div class="skills-additional">
+            <span class="skills-additional__label">additional</span>
+            <div class="skills-additional__icons" aria-label="추가 툴">
+              <div class="skills-additional__icon" title="ChatGPT">
+                <img src="icon/Ellipse 6.svg" alt="ChatGPT">
+              </div>
+              <div class="skills-additional__icon" title="GitHub">
+                <img src="icon/Ellipse 9.svg" alt="GitHub">
+              </div>
+              <div class="skills-additional__icon" title="SVG">
+                <img src="icon/Ellipse 7.svg" alt="SVG">
+              </div>
+              <div class="skills-additional__icon" title="GSAP">
+                <img src="icon/Ellipse 11.svg" alt="GSAP">
+              </div>
+              <div class="skills-additional__icon" title="Framer">
+                <img src="icon/Ellipse 8.svg" alt="Framer">
+              </div>
+              <div class="skills-additional__icon" title="Tailwind">
+                <img src="icon/Ellipse 10.svg" alt="Tailwind">
+              </div>
+              <div class="skills-additional__icon" title="Bootstrap">
+                <img src="icon/Ellipse 12.svg" alt="Bootstrap">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- History -->
+      <div class="history-section">
+        <!-- 학력 + 교육 -->
+        <div class="history-col history-col--left">
+          <div class="history-block">
+            <h3 class="history-block__title">학력</h3>
+            <div class="history-block__content">
+              <p class="history-block__date">2021.03 ~2025.02</p>
+              <p>수원대학교 공예디자인과 졸업</p>
+            </div>
+          </div>
+          <div class="history-block">
+            <h3 class="history-block__title">교육</h3>
+            <div class="history-block__content">
+              <p class="history-block__date">2026.03 ~2026.07</p>
+              <p>이젠아카데미 DX교육센터<br>
+              (UXUI AI 툴셋 활용 웹서비스 기획·디자인<br>
+              &amp;퍼블리싱(바이브코딩))</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 수상·전시 경력 -->
+        <div class="history-col history-col--right">
+          <div class="history-block">
+            <h3 class="history-block__title">수상 · 전시 경력</h3>
+            <div class="history-block__content">
+              <div class="awards-group">
+                <p class="awards-year">2024~</p>
+                <div class="awards-divider"></div>
+                <div class="awards-list">
+                  <p class="awards-item"><span class="awards-item__month">.06</span>한영 텍스타일 디자인 공모전 우수상</p>
+                  <p class="awards-item"><span class="awards-item__month">.11</span>부산 텍스타일 디자인 대전 입선</p>
+                  <p class="awards-item"><span class="awards-item__month">.11</span>한국의상디자인학회 넥타이 디자인공모전 입선,특선</p>
+                </div>
+              </div>
+              <div class="awards-group">
+                <p class="awards-year">2025~</p>
+                <div class="awards-divider"></div>
+                <div class="awards-list">
+                  <p class="awards-item"><span class="awards-item__month">.07</span>도자 명장과 함께하는 도자 디자인 공모전 장려상</p>
+                  <p class="awards-item"><span class="awards-item__month">.11.28 -12.01</span>화성시 로컬 연계 수원대학교 팝업스토어</p>
+                  <p class="awards-item"><span class="awards-item__month">.07</span>진주 실크 텍스타일 디자인 공모전 입선</p>
+                  <p class="awards-item"><span class="awards-item__month">.06</span>한영 텍스타일 디자인 공모전 입선</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+    ③ GRAPHIC DESIGN
+════════════════════════════════════════ -->
+<section id="graphic" class="page page--graphic" aria-label="그래픽 디자인">
+  <div class="paper-bg" aria-hidden="true"></div>
+  <div class="shadow-top"  aria-hidden="true"></div>
+  <div class="shadow-bottom" aria-hidden="true"></div>
+
+  <div class="tabs-wrapper" aria-hidden="true">
+    <nav class="bookmark-tabs" aria-label="섹션 탭">
+      <button class="bookmark-tabs__item" aria-label="홈으로">MAIN</button>
+      <button class="bookmark-tabs__item">ABOUT</button>
+      <button class="bookmark-tabs__item bookmark-tabs__item--active">GRAPHIC</button>
+      <button class="bookmark-tabs__item">WEB</button>
+      <button class="bookmark-tabs__item">UI / UX</button>
+      <button class="bookmark-tabs__item">CONTACT</button>
+    </nav>
+    <div class="tabs-line"></div>
+  </div>
+
+  <h2 class="page-title" aria-label="그래픽 디자인">GRAPHIC DESIGN</h2>
+
+  <!-- Card slider -->
+  <div class="card-slider" aria-label="그래픽 작업물 슬라이더">
+    <div class="card-track" id="graphicTrack" role="list"></div>
+  </div>
+
+  <!-- Arrow -->
+  <button class="slider-btn slider-btn--next" aria-label="다음 카드">
+    <img src="icon/next-btn.svg" alt="다음" class="slider-btn__icon">
+  </button>
+
+</section>
+
+
+<!-- ════════════════════════════════════════
+    ④ WEB PUBLISHING
+════════════════════════════════════════ -->
+<section id="web" class="page page--web" aria-label="웹 퍼블리싱">
+  <div class="paper-bg" aria-hidden="true"></div>
+  <div class="shadow-top"  aria-hidden="true"></div>
+  <div class="shadow-bottom" aria-hidden="true"></div>
+
+  <div class="tabs-wrapper" aria-hidden="true">
+    <nav class="bookmark-tabs" aria-label="섹션 탭">
+      <button class="bookmark-tabs__item" aria-label="홈으로"></button>
+      <button class="bookmark-tabs__item">ABOUT</button>
+      <button class="bookmark-tabs__item">GRAPHIC</button>
+      <button class="bookmark-tabs__item bookmark-tabs__item--active">WEB</button>
+      <button class="bookmark-tabs__item">UI / UX</button>
+      <button class="bookmark-tabs__item">CONTACT</button>
+    </nav>
+    <div class="tabs-line"></div>
+  </div>
+
+  <h2 class="page-title">WEB PUBLISHING</h2>
+
+  <!-- Content area -->
+  <div class="project-content-area" aria-live="polite">
+    <div class="project-content-inner">
+      <div class="project-display" id="webContent" aria-label="웹 퍼블리싱 프로젝트 내용">
+        <div class="project-display__placeholder">프로젝트 이미지 준비 중</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP button -->
+  <button class="top-btn" aria-label="메인으로"><img src="icon/openmoji_top-arrow.svg" alt="top"></button>
+
+  <!-- Bottom project tabs -->
+  <div class="project-tabs-bar" aria-label="프로젝트 선택">
+    <div class="project-tabs-bar__line"></div>
+    <div class="project-tabs-bar__items" id="webTabs" role="tablist"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     ⑤ UI / UX DESIGN
+════════════════════════════════════════ -->
+<section id="uiux" class="page page--uiux" aria-label="UI UX 디자인">
+  <div class="paper-bg" aria-hidden="true"></div>
+  <div class="shadow-top"  aria-hidden="true"></div>
+  <div class="shadow-bottom" aria-hidden="true"></div>
+
+  <div class="tabs-wrapper" aria-hidden="true">
+    <nav class="bookmark-tabs" aria-label="섹션 탭">
+      <button class="bookmark-tabs__item" aria-label="홈으로"></button>
+      <button class="bookmark-tabs__item">ABOUT</button>
+      <button class="bookmark-tabs__item">GRAPHIC</button>
+      <button class="bookmark-tabs__item">WEB</button>
+      <button class="bookmark-tabs__item bookmark-tabs__item--active">UI / UX</button>
+      <button class="bookmark-tabs__item">CONTACT</button>
+    </nav>
+    <div class="tabs-line"></div>
+  </div>
+
+  <h2 class="page-title">UI / UX DESIGN</h2>
+
+  <!-- Content area -->
+  <div class="project-content-area" aria-live="polite">
+    <div class="project-content-inner">
+      <div class="project-display" id="uiuxContent" aria-label="UI UX 프로젝트 내용">
+        <div class="project-display__placeholder">프로젝트 이미지 준비 중</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP button -->
+  <button class="top-btn" aria-label="메인으로"><img src="icon/openmoji_top-arrow.svg" alt="top"></button>
+
+  <!-- Bottom project tabs -->
+  <div class="project-tabs-bar" aria-label="프로젝트 선택">
+    <div class="project-tabs-bar__line"></div>
+    <div class="project-tabs-bar__items" id="uiuxTabs" role="tablist"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     ⑥ CONTACT
+════════════════════════════════════════ -->
+<section id="contact" class="page page--contact" aria-label="연락처">
+  <div class="paper-bg" aria-hidden="true"></div>
+  <div class="shadow-top"  aria-hidden="true"></div>
+  <div class="shadow-bottom" aria-hidden="true"></div>
+
+  <div class="tabs-wrapper" aria-hidden="true">
+    <nav class="bookmark-tabs" aria-label="섹션 탭">
+      <button class="bookmark-tabs__item" aria-label="홈으로"></button>
+      <button class="bookmark-tabs__item">ABOUT</button>
+      <button class="bookmark-tabs__item">GRAPHIC</button>
+      <button class="bookmark-tabs__item">WEB</button>
+      <button class="bookmark-tabs__item">UI / UX</button>
+      <button class="bookmark-tabs__item bookmark-tabs__item--active">CONTACT</button>
+    </nav>
+    <div class="tabs-line"></div>
+  </div>
+
+  <div class="contact-content">
+    <!-- Left: Thank You -->
+    <h1 class="thank-you" aria-label="감사합니다">
+      <span class="thank-you-inner">Thank You</span>
+    </h1>
+
+    <!-- Right: contact info -->
+    <address class="contact-info" aria-label="연락처 정보">
+      <div class="contact-row">
+        <div class="contact-row__fields">
+          <span class="contact-row__label">[ name ]</span>
+          <span class="contact-row__value">서효진</span>
+        </div>
+        <div class="contact-row__divider" aria-hidden="true"></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-row__fields">
+          <span class="contact-row__label">[ email ]</span>
+          <span class="contact-row__value">iiseoiiu@naver.com</span>
+        </div>
+        <div class="contact-row__divider" aria-hidden="true"></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-row__fields">
+          <span class="contact-row__label">[ number ]</span>
+          <span class="contact-row__value">010-7635-8980</span>
+        </div>
+        <div class="contact-row__divider" aria-hidden="true"></div>
+      </div>
+    </address>
+  </div>
+
+  <!-- Copyright -->
+  <p class="copyright" aria-label="저작권">
+    <span class="copyright__main">본 포트폴리오는 100% 직접 제작하였으며, 비상업적 개인 프로젝트임을 밝힙니다.</span>
+    <span class="copyright__sub">Copyright 2026 hyojin seo All Rights Reserved.</span>
+  </p>
+</section>
+
+
+<!-- ── Fixed page-nav dots (GRAPHIC / WEB / UIUX) ── -->
+<div class="page-nav-dots" aria-label="섹션 이동" role="navigation">
+  <div class="page-nav-dot page-nav-dot--active" aria-label="그래픽 디자인으로 이동"></div>
+  <div class="page-nav-dot" aria-label="웹 퍼블리싱으로 이동"></div>
+  <div class="page-nav-dot" aria-label="UI UX 디자인으로 이동"></div>
+</div>
+
+<!-- ── Modal ── -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="작업물 상세">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" aria-label="닫기">×</button>
+    <img class="modal-img" src="" alt="" style="display:none">
+    <p class="modal-title"></p>
+    <p class="modal-desc"></p>
+  </div>
+</div>
+
+<!-- ── Mobile bottom nav ── -->
+<nav class="mobile-nav" aria-label="모바일 하단 탭">
+  <a href="#main"    class="mobile-nav__item mobile-nav__item--active" data-target="main">홈</a>
+  <a href="#about"   class="mobile-nav__item" data-target="about">프로필</a>
+  <a href="#graphic" class="mobile-nav__item" data-target="graphic">그래픽</a>
+  <a href="#web"     class="mobile-nav__item" data-target="web">웹</a>
+  <a href="#uiux"    class="mobile-nav__item" data-target="uiux">UI·UX</a>
+  <a href="#contact" class="mobile-nav__item" data-target="contact">연락처</a>
+</nav>
+
+<script type="module" src="js/main.js"></script>
+
+<script>
+  /* (no-op — modal visibility handled via CSS .is-open) */
+
+  /* Show/hide page-nav-dots based on section */
+  (() => {
+    const dots = document.querySelector('.page-nav-dots');
+    if (!dots) return;
+    const portSections = ['graphic','web','uiux'];
+
+    function checkDots() {
+      const scrollY = window.scrollY;
+      const vh = window.innerHeight;
+      let show = false;
+      portSections.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        if (rect.top < vh * 0.6 && rect.bottom > vh * 0.4) show = true;
+      });
+      dots.classList.toggle('is-visible', show);
+    }
+
+    window.addEventListener('scroll', checkDots, { passive: true });
+    checkDots();
+  })();
+</script>
+</body>
+</html>

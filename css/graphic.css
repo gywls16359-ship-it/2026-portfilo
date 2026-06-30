@@ -1,0 +1,118 @@
+/* ─────────────────────────────────────
+  GRAPHIC DESIGN — card slider
+───────────────────────────────────── */
+
+.page--graphic {
+  /* Content positioned relatively */
+}
+
+/* Full-bleed top image area */
+.section-hero-img {
+  position: absolute;
+  top: 95px; /* below tabs line */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* ── Card slider ── */
+.card-slider {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(calc(-50% + 48px));
+  z-index: 3;
+  overflow: hidden;
+  padding: 10px 0 10px 118px;
+}
+
+.card-track {
+  display: flex;
+  gap: var(--card-gap);
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  cursor: grab;
+  user-select: none;
+}
+
+.card-track:active { cursor: grabbing; }
+
+.card-item {
+  flex-shrink: 0;
+  width: var(--card-w);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.card-item__image {
+  width: var(--card-w);
+  height: var(--card-h);
+  background: var(--color-bg-card);
+  overflow: hidden;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.card-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card-item:hover .card-item__image img {
+  transform: scale(1.04);
+}
+
+.card-item__label {
+  font-family: var(--font-pretend);
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+/* ── Arrow button ── */
+.slider-btn {
+  position: absolute;
+  right: 24px;
+  left: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.slider-btn__icon {
+  width: 48px;
+  height: 48px;
+  opacity: 0.45;
+  transition: opacity 0.2s;
+}
+
+.slider-btn:hover .slider-btn__icon { opacity: 0.75; }
+
+/* 마지막 위치: 왼쪽으로 이동 + 아이콘 반전 */
+.slider-btn--at-left {
+  left: 24px;
+  right: auto;
+}
+
+.slider-btn--at-left .slider-btn__icon {
+  transform: scaleX(-1);
+}
+

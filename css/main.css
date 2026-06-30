@@ -1,0 +1,160 @@
+/* ─────────────────────────────────────
+   MAIN — landing / word-search screen
+───────────────────────────────────── */
+
+.page--main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Center content block ── */
+.main-content {
+  position: relative;
+  width:1400px;
+  height:calc(100vh - 100px);
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 100px;
+}
+
+/* ── Left nav panel ── */
+.nav-left {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+  padding: 150px 0;
+  gap: 55px;
+}
+
+.nav-left__links {
+  display: flex;
+  flex-direction: column;
+  gap: 37px;
+}
+
+.nav-left__item {
+  position: relative;
+}
+
+/* Active indicator — dot only shows on hover */
+
+.nav-left__dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--color-main);
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  opacity: 0;
+  transform: translateX(-20px) scale(0);
+  transition: opacity 0.3s ease, transform 0.4s var(--ease-spring);
+}
+
+.nav-left__link {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-coming);
+  font-size: 27px;
+  font-weight: 400;
+  color: var(--color-black);
+  letter-spacing: 0.27px;
+  line-height: 23px;
+  cursor: pointer;
+  padding-bottom: 3px;
+  vertical-align: middle;
+}
+
+/* Highlighter underlay */
+.nav-left__link::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top:50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 11px;
+  background: var(--color-highlight);
+  border-radius: 2px;
+  z-index: -1;
+  transition: width 0.35s ease;
+}
+
+.nav-left__item:hover .nav-left__dot {
+  opacity: 1;
+}
+
+.nav-left__item:hover .nav-left__link::before {
+  width: 100%;
+}
+
+/* ── Intro text (bottom-left) ── */
+.intro-text {
+  font-family: var(--font-score);
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--color-black);
+  letter-spacing: 0.96px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.intro-text__accent { color: var(--color-main); }
+
+.intro-text__name {
+  font-weight: 500;
+  font-size: 26px;
+  color: var(--color-black);
+}
+
+/* ── Word-search grid ── */
+.word-search-wrapper {
+  width:900px;
+  height:inherit;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.word-search {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(9, 27px);
+  grid-template-rows: repeat(8, 50px);
+  gap: 26px 46px;
+  font-family: var(--font-apple);
+  font-size: 30px;
+  letter-spacing: -3px;
+  line-height: 50px;
+  text-align: center;
+  z-index: 1;
+}
+
+.word-search__cell {
+  color: var(--color-black);
+  width: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.6s ease;
+  will-change: color;
+}
+
+.word-search__cell--orange {
+  color: var(--color-main);
+}
+
+/* ── Pill overlays (SVG) ── */
+.word-search__pills {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: visible;
+}

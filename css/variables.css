@@ -1,0 +1,38 @@
+:root {
+  /* Colors */
+  --color-main:      #ff6200;
+  --color-black:     #202020;
+  --color-accent:    #4E51FF;
+  --color-bg-card:   #e5e5e5;
+  --color-tab-off:   #d9d9d9;
+  --color-text:      #323232;
+  --color-white:     #ffffff;
+  --color-watermark: #c8c8c8;
+  --color-highlight: rgba(255, 198, 0, 0.38);
+  --color-border:    rgba(0,0,0,0.13);
+
+  /* Fonts */
+  --font-score:   'S-Core Dream', 'Pretendard', sans-serif;
+  --font-pretend: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+  --font-coming:  'Coming Soon', cursive;
+  --font-apple:   'AppleSDGothicNeoEB00', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --font-inter:   'Inter', sans-serif;
+
+  /* Tab dimensions */
+  --tab-w:   100px;
+  --tab-h:   30px;
+  --tab-h-active: 40px;
+  --tab-gap: 14px;
+
+  /* Card (Graphic slider) */
+  --card-w:  310px;
+  --card-h:  420px;
+  --card-gap: 50px;
+
+  /* Layout */
+  --page-pad:   30px;
+  --content-max: 1400px;
+
+  /* Transitions */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
