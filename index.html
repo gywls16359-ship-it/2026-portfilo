@@ -312,7 +312,7 @@
 <!-- ════════════════════════════════════════
     ③ GRAPHIC DESIGN
 ════════════════════════════════════════ -->
-<section id="graphic" class="page page--graphic" aria-label="그래픽 디자인">
+<section  id="graphic" class="page page--graphic" aria-label="그래픽 디자인">
   <div class="paper-bg" aria-hidden="true"></div>
   <div class="shadow-top"  aria-hidden="true"></div>
   <div class="shadow-bottom" aria-hidden="true"></div>
@@ -461,23 +461,27 @@
 
   <h2 class="page-title">WEB PUBLISHING</h2>
 
-  <!-- Content area -->
-  <div class="project-content-area" aria-live="polite">
-    <div class="project-content-inner">
-      <div class="project-display" id="webContent" aria-label="웹 퍼블리싱 프로젝트 내용">
-        <div class="project-display__placeholder">프로젝트 이미지 준비 중</div>
+  <div class="project-gallery" aria-label="웹 퍼블리싱 프로젝트">
+    <div class="project-content-area">
+      <div class="project-swiper">
+        <div class="project-swiper__wrapper" id="webSwiper"></div>
+      </div>
+    </div>
+
+    <div class="project-bot">
+      <p class="project-bot__desc" id="webDesc" aria-live="polite"></p>
+      <div class="project-bot__nav">
+        <div class="project-bot__track">
+          <div class="project-bot__line" aria-hidden="true"></div>
+          <div class="project-bot__slider" aria-hidden="true"></div>
+        </div>
+        <div class="project-bot__items" id="webTabs" role="tablist"></div>
       </div>
     </div>
   </div>
 
   <!-- TOP button -->
   <button class="top-btn" aria-label="메인으로"><img src="icon/openmoji_top-arrow.svg" alt="top"></button>
-
-  <!-- Bottom project tabs -->
-  <div class="project-tabs-bar" aria-label="프로젝트 선택">
-    <div class="project-tabs-bar__line"></div>
-    <div class="project-tabs-bar__items" id="webTabs" role="tablist"></div>
-  </div>
 </section>
 
 
@@ -503,23 +507,27 @@
 
   <h2 class="page-title">UI / UX DESIGN</h2>
 
-  <!-- Content area -->
-  <div class="project-content-area" aria-live="polite">
-    <div class="project-content-inner">
-      <div class="project-display" id="uiuxContent" aria-label="UI UX 프로젝트 내용">
-        <div class="project-display__placeholder">프로젝트 이미지 준비 중</div>
+  <div class="project-gallery" aria-label="UI UX 프로젝트">
+    <div class="project-content-area">
+      <div class="project-swiper">
+        <div class="project-swiper__wrapper" id="uiuxSwiper"></div>
+      </div>
+    </div>
+
+    <div class="project-bot">
+      <p class="project-bot__desc" id="uiuxDesc" aria-live="polite"></p>
+      <div class="project-bot__nav">
+        <div class="project-bot__track">
+          <div class="project-bot__line" aria-hidden="true"></div>
+          <div class="project-bot__slider" aria-hidden="true"></div>
+        </div>
+        <div class="project-bot__items" id="uiuxTabs" role="tablist"></div>
       </div>
     </div>
   </div>
 
   <!-- TOP button -->
   <button class="top-btn" aria-label="메인으로"><img src="icon/openmoji_top-arrow.svg" alt="top"></button>
-
-  <!-- Bottom project tabs -->
-  <div class="project-tabs-bar" aria-label="프로젝트 선택">
-    <div class="project-tabs-bar__line"></div>
-    <div class="project-tabs-bar__items" id="uiuxTabs" role="tablist"></div>
-  </div>
 </section>
 
 
@@ -614,6 +622,7 @@
 </nav>
 
 <script type="module" src="js/main.js"></script>
+
 
 <script>
   /* (no-op — modal visibility handled via CSS .is-open) */

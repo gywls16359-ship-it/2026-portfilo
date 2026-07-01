@@ -123,9 +123,11 @@
   .contact-row__value { font-size: 18px; }
 
   /* WEB / UIUX */
-  .project-tabs-bar { left: 20px; right: 20px; }
-  .project-tab-item { width: auto; flex: 1; }
-  .project-tab-item__name { font-size: 14px; }
+  .project-bot { padding: 16px 20px 24px; }
+  .project-bot__item { width: auto; flex: 1; }
+  .project-bot__label { font-size: 14px; }
+  .page--web .top-btn,
+  .page--uiux .top-btn { bottom: 110px; }
 
   .copyright { width: 90%; font-size: 12px; }
 }

@@ -33,13 +33,14 @@
 .card-track {
   display: flex;
   gap: var(--card-gap);
-  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
-  cursor: grab;
   user-select: none;
 }
 
-.card-track:active { cursor: grabbing; }
+/* 가로 갤러리 스크롤 중에는 카드 호버 전환만 유지 */
+.page--graphic.is-scrolling-gallery .card-item__image img:first-child {
+  transition: none;
+}
 
 .card-item {
   flex-shrink: 0;

@@ -5,20 +5,20 @@ import { renderSkillCircles } from './skillCircle.js';
 import { initSlider } from './slider.js';
 import { initProjectTabs } from './projectTab.js';
 import { initAnimations } from './animations.js';
+import { initGalleryScrollSnap } from './scrollSnap.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, TextPlugin, Draggable);
 
-  /* Render dynamic content */
   renderWordSearch('wordSearch');
   renderSkillCircles('skillCircles');
 
-  /* Init interactive modules — 카드는 HTML에 직접 작성 */
+  initGalleryScrollSnap();
   initSlider();
-  initProjectTabs();
-
-  /* Init all GSAP animations */
+  await initProjectTabs();
   initAnimations();
+
+  ScrollTrigger.refresh();
 
   /* Bookmark tab navigation */
   initBookmarkTabs();

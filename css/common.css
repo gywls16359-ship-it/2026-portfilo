@@ -8,6 +8,17 @@ html {
   height: 100%;
 }
 
+html.is-pin-scrolling,
+body.is-pin-scrolling {
+  scroll-snap-type: none !important;
+}
+
+html.is-pin-scrolling .page,
+body.is-pin-scrolling .page {
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+}
+
 body {
   height: 100%;
   background: #f4f1ec;
@@ -125,6 +136,25 @@ body {
   z-index: 2;
   letter-spacing: 0;
 }
+
+/* ── TOP button (공통) ── */
+.top-btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 90px;
+  z-index: 5;
+  width: 57px;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.top-btn:hover { opacity: 1; }
 
 /* ── Section dot indicator (GRAPHIC/WEB/UIUX shared) ── */
 .section-dot-nav {

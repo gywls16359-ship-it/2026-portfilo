@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────
    WEB PUBLISHING & UI/UX DESIGN
-   (identical layout, different data)
+   Mabinogi-style: fade swiper + bottom nav
 ───────────────────────────────────── */
 
 .page--web,
@@ -8,48 +8,65 @@
   /* full-page sections */
 }
 
-/* ── Gray content area (top: 97px → full bottom) ── */
-.project-content-area {
+/* ── Gallery wrapper ── */
+.project-gallery {
   position: absolute;
   top: 97px;
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--color-bg-card);
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gray slide area */
+.project-content-area {
+  flex: 1;
+  min-height: 0;
+  background: var(--color-bg-card);
   overflow: hidden;
 }
 
-.project-content-inner {
+/* Fade swiper (swiper-fade 대체) */
+.project-swiper {
   width: 100%;
-  height: calc(100% - 90px); /* leave room for tab bar */
+  height: 100%;
+  position: relative;
+}
+
+.project-swiper__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.project-swiper__slide {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px 60px;
+  opacity: 0;
+  pointer-events: none;
 }
 
-/* Project image/content display */
-.project-display {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
+.project-swiper__slide--active {
+  pointer-events: auto;
 }
 
-.project-display__img {
+.project-swiper__img {
   max-width: 100%;
-  max-height: 620px;
+  max-height: 100%;
   object-fit: contain;
   border-radius: 8px;
 }
 
-.project-display__placeholder {
+.project-swiper__placeholder {
   width: 100%;
-  height: 600px;
+  max-width: 900px;
+  height: min(600px, 70vh);
   background: #d0d0d0;
   border-radius: 8px;
   display: flex;
@@ -60,77 +77,95 @@
   font-size: 16px;
 }
 
-/* ── TOP button ── */
-.top-btn {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 90px; /* sits above the tab bar */
-  z-index: 5;
-  width: 57px;
-  height: 57px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--color-text);
-  font-size: 22px;
-  opacity: 0.75;
-  transition: opacity 0.2s, color 0.2s;
-}
-
-.top-btn:hover {
-  opacity: 1;
-  color: var(--color-main);
-}
-
-/* ── Bottom project tab bar (positioned at bottom of page) ── */
-.project-tabs-bar {
-  position: absolute;
-  left: 179px;
-  right: 179px;
-  bottom: 30px;
+/* ── Bottom nav (_bot) ── */
+.project-bot {
+  flex-shrink: 0;
+  padding: 20px 179px 30px;
   z-index: 5;
 }
 
-.project-tabs-bar__line {
-  height: 3px;
-  background: var(--color-border);
-  border-radius: 2px;
+.project-bot__desc {
+  font-family: var(--font-pretend);
+  font-size: 15px;
+  color: #5d5d5d;
+  line-height: 1.5;
+  min-height: 1.5em;
+  margin-bottom: 18px;
+}
+
+.project-bot__nav {
+  position: relative;
+}
+
+.project-bot__track {
+  position: relative;
+  width: 100%;
+  height: 6px;
   margin-bottom: 0;
 }
 
-.project-tabs-bar__items {
+.project-bot__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 3px;
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+/* 활성 인디케이터 — 점이 라인으로 늘어나며 이동 */
+.project-bot__slider {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 6px;
+  width: 6px;
+  border-radius: 10px;
+  background: var(--color-main);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.project-bot__items {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-top: -3px;
 }
 
-.project-tab-item {
+.project-bot__item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 14px;
   width: 162px;
   cursor: pointer;
-  margin-top: -1.5px; /* overlap the line */
+  outline: none;
 }
 
-/* Active: orange bar */
-.project-tab-item__indicator {
-  height: 6px;
-  border-radius: 10px;
-  background: var(--color-tab-off);
+/* _target — 비활성: 회색 점 */
+.project-bot__target {
+  display: block;
   width: 6px;
-  transition: width 0.45s cubic-bezier(0.4,0,0.2,1), background 0.3s ease;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-tab-off);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.2s ease;
 }
 
-.project-tab-item--active .project-tab-item__indicator {
-  width: 100%;
-  background: var(--color-main);
+.project-bot__item--active .project-bot__target,
+.project-bot__target--on {
+  opacity: 0;
 }
 
-.project-tab-item__name {
+/* _t — 탭 라벨 */
+.project-bot__label {
   font-family: var(--font-inter);
   font-weight: 400;
   font-size: 20px;
@@ -138,14 +173,38 @@
   white-space: nowrap;
   text-align: center;
   line-height: 1.3;
-  transition: color 0.2s;
+  transition: color 0.25s ease, font-weight 0.25s ease;
 }
 
-.project-tab-item--active .project-tab-item__name {
+.project-bot__item--active .project-bot__label,
+.project-bot__label--on {
   color: var(--color-black);
   font-weight: 500;
 }
 
-.project-tab-item:hover .project-tab-item__name {
+.project-bot__item:hover .project-bot__label {
   color: var(--color-main);
+}
+
+/* ── TOP button ── */
+.page--web .top-btn,
+.page--uiux .top-btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 130px;
+  z-index: 6;
+  width: 57px;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.page--web .top-btn:hover,
+.page--uiux .top-btn:hover {
+  opacity: 1;
 }
